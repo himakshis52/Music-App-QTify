@@ -1,0 +1,33 @@
+var _circle, _path;
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+import * as React from "react";
+function SvgBack(_ref, svgRef) {
+  let {
+    title,
+    titleId,
+    ...props
+  } = _ref;
+  return /*#__PURE__*/React.createElement("svg", _extends({
+    width: 40,
+    height: 40,
+    viewBox: "0 0 40 40",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg",
+    ref: svgRef,
+    "aria-labelledby": titleId
+  }, props), title ? /*#__PURE__*/React.createElement("title", {
+    id: titleId
+  }, title) : null, _circle || (_circle = /*#__PURE__*/React.createElement("circle", {
+    cx: 20,
+    cy: 20,
+    r: 19.5,
+    fill: "#121212",
+    stroke: "white"
+  })), _path || (_path = /*#__PURE__*/React.createElement("path", {
+    d: "M27.8398 20.25C27.8398 20.7422 27.4531 21.1289 26.9961 21.1289H15.043L19.7188 25.5586C20.0703 25.875 20.0703 26.4375 19.7539 26.7539C19.4375 27.1055 18.9102 27.1055 18.5586 26.7891L12.3711 20.8828C12.1953 20.707 12.125 20.4961 12.125 20.25C12.125 20.0391 12.1953 19.8281 12.3711 19.6523L18.5586 13.7461C18.9102 13.4297 19.4375 13.4297 19.7539 13.7812C20.0703 14.0977 20.0703 14.6602 19.7188 14.9766L15.043 19.4062H26.9961C27.4883 19.4062 27.8398 19.793 27.8398 20.25Z",
+    fill: "white"
+  })));
+}
+const ForwardRef = /*#__PURE__*/React.forwardRef(SvgBack);
+export default __webpack_public_path__ + "static/media/back.54164e7b34711aae6e6cf57393fa22df.svg";
+export { ForwardRef as ReactComponent };

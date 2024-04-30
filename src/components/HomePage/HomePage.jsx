@@ -1,39 +1,41 @@
 import React from "react";
-import Navbar from "..//Navbar/Navbar";
+import sectionStyles from "../Section/section.module.css";
 import Hero from "../Hero/Hero";
+import Navbar from "..//Navbar/Navbar";
+import Section from "../Section/Section";
 import { useState, useEffect } from "react";
 import {
-    fetchTopAlbum,
-    fetchNewAlbum,
-    fetchSongs,
-    fetchGenres,
-  } from "../../BackendAPI/Api";
-import sectionStyles from "../Section/section.module.css";
-import Section from "../Section/Section";
-
+  fetchTopAlbum,
+  fetchNewAlbum,
+  fetchSongs,
+  fetchGenres,
+} from "../../BackendAPI/Api";
+import { FAQs } from "../FAQs/FAQs";
+import Footer from "../Footer/Footer";
+//import AudioBar from "../Audio Bar/AudioBar";
 
 function HomePage() {
+  console.log("Inside this component");
+  let [topAlbum, setTopAlbum] = useState([]);
+  let [newAlbum, setNewAlbum] = useState([]);
+  let [songs, setSongs] = useState([]);
+  let [genres, setGeneres] = useState([]);
+  useEffect(() => {
+    (async () => {
+      let topAlbumData = await fetchTopAlbum();
+      setTopAlbum(topAlbumData);
 
-    let [topAlbum, setTopAlbum] = useState([]);
-    let [newAlbum, setNewAlbum] = useState([]);
-    let [songs, setSongs] = useState([]);
-    let [genres, setGeneres] = useState([]);
-    useEffect(() => {
-      (async () => {
-        let topAlbumData = await fetchTopAlbum();
-        setTopAlbum(topAlbumData);
-  
-        let newAlbumData = await fetchNewAlbum();
-        setNewAlbum(newAlbumData);
-  
-        let fetchSongsData = await fetchSongs();
-        setSongs(fetchSongsData);
-  
-        let fetchSongsGenere = await fetchGenres();
-        setGeneres(fetchSongsGenere.data);
-      })();
-    }, []);
-  
+      let newAlbumData = await fetchNewAlbum();
+      setNewAlbum(newAlbumData);
+
+      let fetchSongsData = await fetchSongs();
+      setSongs(fetchSongsData);
+
+      let fetchSongsGenere = await fetchGenres();
+      setGeneres(fetchSongsGenere.data);
+    })();
+  }, []);
+
   return (
     <div>
       <Navbar data={topAlbum.concat(newAlbum)} page={"home"} />
@@ -45,6 +47,10 @@ function HomePage() {
         <Section title="Songs" data={songs} type="songs" genres={genres} />{" "}
         <hr />
       </div>{" "}
+      <FAQs />
+      <hr style={{ backgroundColor: "gray", border: "1px solid gray" }} />{" "}
+      <Footer />
+      <hr /> {/* <AudioBar song={{}}/> */}{" "}
     </div>
   );
 }
